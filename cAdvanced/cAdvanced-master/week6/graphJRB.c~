@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlb.h>
+#include "graphJRB.h"
+
+Graph createGraph(){
+  return make_jrb();
+}
+
+void addEdge(Graph graph, int v1, int v2){
+  jrb_insert_int(graph, v1, new_jval_i(numberv2));
+  jrb_insert_int(graph, v2, new_jval_i(numberv1));
+}
+
+int adjacent(Graph graph, int v1, int v2){
+  
+}
+
+int getAdjacentVertices (Graph graph, int v, int* output);
+
+void printGraph(Graph graph){
+  JRB tmp;
+  jrb_traverse(tmp, graph){
+    printf("\n%s: %d\n", jval_s(tmp->key), jval_i(tmp->val));
+  }
+}
+
+void dropGraph(Graph graph);
