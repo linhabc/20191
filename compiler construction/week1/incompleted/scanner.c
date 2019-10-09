@@ -90,6 +90,10 @@ Token* readNumber(void) {
   while( currentChar != EOF && charCodes[currentChar]  == CHAR_DIGIT){
     token->string[numberLength++] = (char)currentChar;
     readChar();
+    if (numberLength > MAX_NUMBER_LEN && charCodes[currentChar] == CHAR_DIGIT ) {
+      error(ERR_NUMBERTOOLONG, lineNo,colNo);
+      return token;
+    }
   }
 
   token->string[numberLength] = '\0';
@@ -149,6 +153,93 @@ Token* getToken(void) {
     
     case CHAR_SINGLEQUOTE:
       return readConstChar();
+
+    case CHAR_MINUS:
+      token = makeToken(SB_MINUS, lineNo, colNo);
+      readChar(); 
+      return token;
+		
+		case CHAR_TIMES:
+			token = makeToken(SB_TIMES, lineNo, colNo);
+			readChar(); 
+			return token;
+		
+		case CHAR_SLASH:
+			token = makeToken(SB_SLASH, lineNo, colNo);
+			readChar(); 
+			return token;
+		
+		case CHAR_LT:
+			ln = lineNo;
+			cn = colNo;
+			readChar();
+			if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
+				readChar();
+				return makeToken(SB_LE, ln, cn);
+			} 
+			else {
+				return makeToken(SB_LT, ln, cn);
+			}
+		
+		case CHAR_GT:
+			ln = lineNo;
+			cn = colNo;
+			readChar();
+			if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
+				readChar();
+				return makeToken(SB_GE, ln, cn);
+			} 
+			else{ 
+				return makeToken(SB_GT, ln, cn);
+			}
+		
+		case CHAR_EQ:
+			token = makeToken(SB_EQ, lineNo, colNo);
+			readChar(); 
+			return token;
+		
+		case CHAR_EXCLAIMATION:
+			ln = lineNo;
+			cn = colNo;
+			readChar();
+			if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
+				readChar();
+				return makeToken(SB_NEQ, ln, cn);
+			} 
+			else {
+				token = makeToken(TK_NONE, ln, cn);
+				error(ERR_INVALIDSYMBOL, ln, cn);
+				return token;
+			}
+		
+		case CHAR_COMMA:
+			token = makeToken(SB_COMMA, lineNo, colNo);
+			readChar(); 
+			return token;
+		
+		case CHAR_PERIOD:
+			ln = lineNo;
+			cn = colNo;
+			readChar();
+			if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_RPAR)) {
+				readChar();
+				return makeToken(SB_RSEL, ln, cn);
+			} 
+			else{ 
+				return makeToken(SB_PERIOD, ln, cn);
+			}
+		
+		case CHAR_COLON:
+			ln = lineNo;
+			cn = colNo;
+			readChar();
+			if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
+				readChar();
+				return makeToken(SB_ASSIGN, ln, cn);
+			} 
+			else {
+				return makeToken(SB_COLON, ln, cn);
+			}
     
     case CHAR_LPAR:
       ln = lineNo;
