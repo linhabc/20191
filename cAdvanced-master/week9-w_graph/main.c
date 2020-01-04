@@ -14,7 +14,7 @@ void shortest_path(Graph g){
     if (w == INFINITIVE_VALUE) {
          printf("No path from %s to %s\n", getVertex(g, v1), getVertex(g, v2));
     } else {
-         printf("Path from %s to %s (with total distance %f)\n", getVertex(g, v1), getVertex(g, v2), w);
+         printf("Path from %s to %s (with total distance %lf)\n", getVertex(g, v1), getVertex(g, v2), w);
          for (i=0; i<length; i++)
              printf(" => %s", getVertex(g, path[i]));
     }

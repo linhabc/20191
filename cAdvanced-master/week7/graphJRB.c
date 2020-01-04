@@ -100,10 +100,10 @@ void DFS(Graph graph, int start, int stop, void(*func)(int)){
       //add unvisited neighbour to the queue
       n = getAdjacentVertices(graph, u, output);
       for(i = 0; i < n; i++) {
-	v = output[i];
-	if(jrb_find_int(visited ,v) == NULL) {
-	  dll_prepend(stack, new_jval_i(v));
-	}
+        v = output[i];
+        if(jrb_find_int(visited ,v) == NULL) {
+          dll_prepend(stack, new_jval_i(v));
+        }
       }
     }
   }
@@ -135,10 +135,10 @@ void BFS(Graph graph, int start, int stop, void(*func)(int)){
       //add unvisited neighbour to the queue
       n = getAdjacentVertices(graph, u, output);
       for(i = 0; i < n; i++) {
-	v = output[i];
-	if(jrb_find_int(visited ,v) == NULL) {
-	  dll_append(queue, new_jval_i(v));
-	}
+        v = output[i];
+        if(jrb_find_int(visited ,v) == NULL) {
+          dll_append(queue, new_jval_i(v));
+        }
       }
     }
   }

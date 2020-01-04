@@ -301,6 +301,7 @@ void compileParam(void) {
     error(ERR_INVALIDPARAM, lookAhead->lineNo, lookAhead->colNo);
   }
 }
+
 void compileStatements(void) {
   compileStatement();
   compileStatements2();
