@@ -1,0 +1,4 @@
+Program Example1; (* Example 1 *)
+Type T = for;
+Begin
+End. (* Example 1 *)
