@@ -14,36 +14,27 @@ BEGIN
      A(.I.) := READI;
 END;
 
-PROCEDURE OUTPUT;
-VAR I : INTEGER;
-BEGIN
-  FOR I := 1 TO N DO
-     BEGIN
-       CALL WRITEI(A(.I.));
-       CALL WRITELN;
-     END
-END;
-
-FUNCTION SUM : INTEGER;
+FUNCTION FINDMAX : INTEGER;
 VAR I: INTEGER;
-    S : INTEGER;
+    MAX : INTEGER;
 BEGIN
-    S := 0;
     I := 1;
+    MAX := A(.I.);
+
     WHILE I <= N DO
-     BEGIN
-       S := S + A(.I.);
-       I := I + 1;
-     END
+      BEGIN
+        IF A(.I.) > MAX THEN
+          BEGIN
+            MAX := A(.I.);
+            I := I + 1;
+          END;
+      END;
+    FINDMAX := MAX;
 END;
 
 BEGIN
-   CH := 'y';
-   WHILE CH = 'y' DO
-     BEGIN
-       CALL INPUT;
-       CALL OUTPUT;
-       CALL WRITEI(SUM);
-       CH := READC;
-     END
+
+  CALL INPUT;
+  CALL WRITEI(FINDMAX);
+
 END.  (* Example 4 *)
