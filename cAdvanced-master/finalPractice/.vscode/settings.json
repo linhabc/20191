@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "weighted_graph.h": "c",
+        "ctype.h": "c"
+    }
+}
