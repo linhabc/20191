@@ -15,7 +15,7 @@ int main(){
     printf("1. Read file and print matrix\n");
     printf("2. Print castle\n");
     printf("3. List of castle\n");
-    printf("4. \n");
+    printf("4. Shortest path\n");
     printf("5. \n");
     printf("6. Exit\n");
     do{
@@ -38,7 +38,7 @@ int main(){
         break;
 
       case  4:
-
+        shortestPathCastle(g);
         break;
 
       case  5:

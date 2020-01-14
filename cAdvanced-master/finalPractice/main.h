@@ -120,3 +120,20 @@ void maxInDegreeCastle(Graph g){
     }
     printf("\n");
 }
+
+void shortestPathCastle(Graph g){
+    int s, t;
+    printf("Enter start location: ");
+    scanf(" %d", &s);
+    printf("Enter end location: ");
+    scanf(" %d", &t);
+
+    int path[100], length;
+    double n = shortestPath(g, s, t, path, &length);
+    printf("Path length: %.0lf\n", n);
+    printf("Path: ");
+    for(int i=0; i<length; i++){
+        printf("%d ", path[i]);
+    }
+    printf("\n");
+}
